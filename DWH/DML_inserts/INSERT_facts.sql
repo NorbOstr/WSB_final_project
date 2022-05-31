@@ -1,4 +1,5 @@
 
+truncate wsb.fct_exchange_products restart identity cascade;
 INSERT INTO wsb.fct_exchange_products
 	(
 		reporter_country_id ,
@@ -41,7 +42,7 @@ WHERE sep."element" in ('Export Quantity', 'Import Quantity')
 	and sep."value" is not null;
 
 ---------------------------------------------------------------------
-
+truncate wsb.fct_production  restart identity cascade;
 INSERT INTO wsb.fct_production 
 	(
 		country_id,

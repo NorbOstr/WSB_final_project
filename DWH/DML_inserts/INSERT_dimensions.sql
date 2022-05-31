@@ -22,7 +22,7 @@ INSERT INTO wsb.dim_flags_production
 select distinct
 		"Flag",
 		"Flags"
-from wsb.stg_production_flags spf 
+from wsb.stg_production_flags spf ;
 
 -------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ INSERT INTO wsb.dim_flags_exchange
 select distinct
 		"Flag",
 		"Flags"
-from wsb.stg_exchange_flags 
+from wsb.stg_exchange_flags;
 
 ------------------------------------------------------------------------------
 INSERT INTO wsb.dim_regions 
@@ -72,7 +72,7 @@ FROM wsb.stg_exchange_products
 UNION 
 
 select distinct unit
-FROM wsb.stg_production
+FROM wsb.stg_production;
 
 ------------------------------------------------
 
@@ -86,7 +86,7 @@ FROM wsb.stg_exchange_products sep
 
 WHERE sep."element" in ('Export Quantity', 'Import Quantity')
 	and sep.item in (select item from wsb.stg_production where "element" = 'Production')
-	and sep.value is not null
+	and sep.value is not null;
 	
 ----------------------------------------------------------
 	
@@ -97,7 +97,7 @@ INSERT INTO wsb.dim_product_categories
 select distinct 
 		"Item Group"
 FROM wsb.stg_product_categories
-where "Item" in (select product from wsb.dim_products dp2) 
+where "Item" in (select product from wsb.dim_products dp2); 
 
 -----------------------------------------------------------
 
@@ -114,4 +114,4 @@ FROM wsb.stg_product_categories spc
 left join wsb.dim_products dp on
 		spc."Item" = dp.product
 left join wsb.dim_product_categories dpc on
-		spc."Item Group" = dpc.product_category
+		spc."Item Group" = dpc.product_category;
