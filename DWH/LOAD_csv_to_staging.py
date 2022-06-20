@@ -1,6 +1,14 @@
 import psycopg2
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+HOST = os.getenv("HOST")
+DB_NAME = os.getenv("DB_NAME")
+USER = os.getenv("USER")
+PASSWORD = os.getenv("PASSWORD")
 
 prodcution_file = "Production_Crops_Livestock_E_All_Data_(Normalized).csv"
 exchange_products_file = "Trade_DetailedTradeMatrix_E_All_Data_(Normalized).csv"
@@ -9,7 +17,7 @@ production_flags = "production_flags.csv"
 exchange_flags = "exchange_flags.csv"
 prodcut_categories = "product_categories.csv"
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=5432")
+conn = psycopg2.connect(f"host={HOST} dbname={DB_NAME} user={USER} password={PASSWORD}")
 cur = conn.cursor()
 
 all_needed_csv_paths = []
